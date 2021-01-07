@@ -491,5 +491,11 @@ namespace SportsComplex
         {
             this.AutoIdGenerate();
         }
+
+        private void btnRequestedSearchSlot_Click(object sender, EventArgs e)
+        {
+            this.Sql = @"select * from request_info where status = '" + this.txtSearchRequest.Text + "';";
+            this.PopulateGridViewRequest(this.Sql);
+        }
     }
 }

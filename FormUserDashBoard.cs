@@ -58,7 +58,7 @@ namespace SportsComplex
         }
         private void btnSearchSlot_Click(object sender, EventArgs e)
         {
-            this.Sql = @"select * from slot_info where sportstype = '" + this.txtSearch.Text + "' order by desc;";
+            this.Sql = @"select * from slot_info where sportstype = '" + this.txtSearch.Text + "'";
             this.PopulateGridView(this.Sql);
         }
 
@@ -216,8 +216,11 @@ namespace SportsComplex
 
         private void btnRequestedSearchSlot_Click(object sender, EventArgs e)
         {
-            this.Sql = @"select * from request_info where sportstype = '"+this.txtSearchRequest+"';";
-            this.PopulateGridViewRequest(this.Sql);
+            this.Sql = @"select * from request_info where status = '" + this.txtSearchRequest.Text + "';";
+            this.Ds = this.Da.ExecuteQuery(this.Sql);
+
+            this.dgvRequestUser.AutoGenerateColumns = false;
+            this.dgvRequestUser.DataSource = this.Ds.Tables[0];
         }
 
     }
